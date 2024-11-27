@@ -1,0 +1,3 @@
+db_username = harishselvaraj27
+db_passi = HyZsL3ouQ9m8UUeO
+connectionstring = mongodb+srv://harishselvaraj27:HyZsL3ouQ9m8UUeO@cluster0.djb1p.mongodb.net/chat-app
