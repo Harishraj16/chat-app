@@ -16,7 +16,8 @@ const userSchema = new mongoose.Schema({
     password: {
         type: String,
         required: true,
-        select: false
+        select: false,
+        minlength: 8
     },
     profilePic: {
         type: String,
@@ -24,4 +25,4 @@ const userSchema = new mongoose.Schema({
     },
 },{timestamps:true});
 
-module.exports = mongoose.model('User',userSchema);
+module.exports = mongoose.model('users',userSchema);

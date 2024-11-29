@@ -6,20 +6,20 @@ router.get('/get-logged-user', authMiddleware, async (req, res) => {
     try {
         const user = await User.findById(req.body.userId); 
         if (!user) {
-            return res.status(404).send({
+            return res.status(400).send({
                 message: "User does not exist",
                 success: false
             });
         }
 
-        res.status(200).json({
+        res.json({
             message: "user fetched successfully!",
             success: true,
             user: user
         });
     } catch (err) {
-        res.status(500).send({
-            message: "Internal server error",
+        res.status(400).send({
+            message: err.message,
             success: false
         });
     }
@@ -28,14 +28,14 @@ router.get('/get-logged-user', authMiddleware, async (req, res) => {
 router.get('/get-all-user',authMiddleware,async (req,res)=>{
     try {
         const user = await User.find({_id: {$ne: req.body.userId}}); 
-        res.status(200).json({
+        res.json({
             message: "users fetched successfully!",
             success: true,
             user: user
         });
     } catch (err) {
-        res.status(500).send({
-            message: "Internal server error",
+        res.status(400).send({
+            message: err.message,
             success: false
         });
     }

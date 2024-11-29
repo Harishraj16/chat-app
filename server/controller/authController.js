@@ -23,13 +23,13 @@ router.post('/signup',async (req,res)=>{
         //4. save the new user in the db
         const newUser = new User(req.body);
         await newUser.save();
-        res.json({
+        res.status(201).send({
             message: 'User created successfully',
             success: true
         })
 
     }catch(err){
-        res.status(500).send({
+        res.status(400).send({
             message:err.message,
             success: false
         })
@@ -54,15 +54,16 @@ router.post('/login',async (req,res)=>{
                 status: false
             })
         }
+        
         //3. log in and give jwt
         const token = await jwt.sign({userId: user._id},process.env.SECRET_KEY);
-        res.status(200).json({
+        res.status(201).json({
             message:"user login successful!",
             status: true,
             token: token
         })
     }catch(err){
-        res.status(500).send({
+        res.status(400).send({
             message:err.message,
             success: false
         })
