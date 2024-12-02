@@ -13,7 +13,7 @@ router.post('/create-new-chat',authMiddleware,async(req,res)=>{
             chat: savedChat
         })
     }catch(err){
-        res.status(400).send({
+        res.send({
             message:err.message,
             success: false
         })
@@ -30,7 +30,7 @@ router.get('/get-all-chats',authMiddleware,async(req,res)=>{
             chat: allChat
         })
     }catch(err){
-        res.status(400).send({
+        res.send({
             message:err.message,
             success: false
         })

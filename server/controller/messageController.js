@@ -31,7 +31,7 @@ router.post('/new-message',authMiddleware,async(req,res)=>{
         })
 
     }catch(err){
-        res.status(500).json({
+        res.json({
             message:err.message,
             success: false
         
@@ -48,7 +48,7 @@ router.get('/get-all-messages/:chatId',authMiddleware,async (req,res)=>{
             data: allMessages
         })
     }catch(err){
-        res.status(400).send({
+        res.send({
             message: err.message,
             success: false
         })

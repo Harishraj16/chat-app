@@ -6,7 +6,7 @@ router.get('/get-logged-user', authMiddleware, async (req, res) => {
     try {
         const user = await User.findById(req.body.userId); 
         if (!user) {
-            return res.status(400).send({
+            return res.send({
                 message: "User does not exist",
                 success: false
             });
@@ -18,7 +18,7 @@ router.get('/get-logged-user', authMiddleware, async (req, res) => {
             user: user
         });
     } catch (err) {
-        res.status(400).send({
+        res.send({
             message: err.message,
             success: false
         });
@@ -34,7 +34,7 @@ router.get('/get-all-user',authMiddleware,async (req,res)=>{
             user: user
         });
     } catch (err) {
-        res.status(400).send({
+        res.send({
             message: err.message,
             success: false
         });
