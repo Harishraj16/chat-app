@@ -2,19 +2,23 @@ import React from "react";
 import { Link } from "react-router-dom";
 import { logIn } from "../../apiCalls/auth";
 import {toast} from "react-hot-toast"
+import { useDispatch } from "react-redux";
+import { hideLoader, showLoader } from "../../redux/loaderSlice";
 
 function Login() {
+    const dispatch = useDispatch();
     const [user,setUser] = React.useState({
         email: '',
         password:''
     })
 
-     const handleSubmit = async (e) => {
+    const handleSubmit = async (e) => {
         e.preventDefault();
         let response = null;
         try{
+            dispatch(showLoader());
             response = await logIn(user);
-
+            dispatch(hideLoader());
             if(response.success){
                 toast.success("login Successfull!");
                 localStorage.setItem('token', response.token);
